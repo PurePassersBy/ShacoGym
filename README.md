@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 ## Solve the Problem
 
-Here is a baseline method for *Bandit*.
+Here is a baseline method for *Bandit*. Read [this](gym/problems/bandit/bandit.md) to learn this problem.
 
 ```bash
 python judge.py --problem_name bandit --solution_file ./gym/problems/bandit/baseline.py
