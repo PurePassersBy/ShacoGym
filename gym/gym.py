@@ -9,7 +9,6 @@ from .util import (
 )
 
 
-
 class Gym:
     """
     Next Generation Competitive Programming Platform
@@ -26,7 +25,7 @@ class Gym:
         except ValueError as e:
             self.logger.error(e)
             return
-        
+
         # === import solution ===
         try:
             sol_cls = load_solution_from_file(solution_file)

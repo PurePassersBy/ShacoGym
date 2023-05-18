@@ -7,6 +7,7 @@ from ..base import Environment
 
 class Bandit(Environment):
     RESULTS: List[int] = []
+
     def __init__(self, k: int, probs: list[float], quota: int, seed: int=0):
         self.k = k
         self.probs = probs
@@ -32,7 +33,7 @@ class Bandit(Environment):
 
         self.logger.info(f"Total reward: {self.total_reward}")
         self.RESULTS.append(int(self.total_reward))
-    
+
     def on_action(self, index: int) -> float:
         if self.rng.random() < self.probs[index]:
             return 1.
