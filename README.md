@@ -1,3 +1,10 @@
+# ShacoGym
+
+[![Python 3.10](https://shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3109/)
+[<img src="https://img.shields.io/badge/license-MIT-blue">](https://github.com/PurePassersBy/ShacoGym)
+[![Platform](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-lightgrey)](https://github.com/PurePassersBy/ShacoGym)
+[![lint](https://github.com/PurePassersBy/ShacoGym/actions/workflows/flake8_lint.yml/badge.svg)](https://github.com/PurePassersBy/ShacoGym/actions/workflows/flake8_lint.yml)
+
 ShacoGym aims to explore a novel mechanism for next generation competetive programming. Traditional competetive programming, such as [codeforces](https://codeforces.com/) and [atcoder](https://atcoder.jp/), requires players to use optimized algorithm to solve deterministic problems. ShacoGym distinguish itself by aiming to solve a novel kind of problem including these features:
 - :rainbow: **Interactive**
     - You do not have full information to solve problems, you need explore to get more information and you receive different information upon your different actions.
