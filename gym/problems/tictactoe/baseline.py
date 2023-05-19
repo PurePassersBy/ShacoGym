@@ -5,6 +5,7 @@ from typing import List
 
 class Solution:
     SIZE = 3
+
     def setup(self, marker: str, board: List[List[str]]) -> None:
         """
         Called once before the start of the game.

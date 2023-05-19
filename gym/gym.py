@@ -52,7 +52,6 @@ class Gym:
         # env_cls.show_sota_results()
         print('You can compare your result with Baseline and SOTA. Have a fun!')
 
-
     def play(self, problem_name: str):
         # === import problem environment ===
         try:

@@ -4,8 +4,6 @@ from typing import List, Optional, Tuple
 
 import numpy as np
 
-from gym.problems.base import Environment
-
 from ..base import Environment
 
 
@@ -13,10 +11,10 @@ class InteractivePlayer:
     def setup(self, marker: str, board: List[List[str]]) -> None:
         self.marker = marker
         self.board = board
-        print(f'=== Welcome to ShacoGym. This is a Tic-Tac-Toe game. ===')
-        print('In this game, two players take turns playing on a three-by-three board.\n\n' \
-              'One player plays "X"s and the other "O"s until one player wins by ' \
-              'placing three marks in a row, horizontally, vertically, or diagonally.\n\n' \
+        print('=== Welcome to ShacoGym. This is a Tic-Tac-Toe game. ===')
+        print('In this game, two players take turns playing on a three-by-three board.\n\n'
+              'One player plays "X"s and the other "O"s until one player wins by '
+              'placing three marks in a row, horizontally, vertically, or diagonally.\n\n'
               'If the board fills up with neither player getting three in a row, then the game is a draw. "X" moves first.\n')
         print(f'=== You are playing as \"{marker}\" this time ===')
     
@@ -144,9 +142,9 @@ class TicTacToe(Environment):
         if len(set([self.board[i][i] for i in range(self.SIZE)])) == 1 and self.board[0][0] != '_':
             _rewind()
             return self.board[0][0]
-        if len(set([self.board[i][self.SIZE - 1 - i] for i in range(self.SIZE)])) == 1 and self.board[0][self.SIZE-1] != '_':
+        if len(set([self.board[i][self.SIZE - 1 - i] for i in range(self.SIZE)])) == 1 and self.board[0][self.SIZE - 1] != '_':
             _rewind()
-            return self.board[0][self.SIZE-1]
+            return self.board[0][self.SIZE - 1]
 
         # === check draw ===
         if all([cell != '_' for row in self.board for cell in row]):
