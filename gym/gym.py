@@ -18,7 +18,7 @@ class Gym:
         self.logger.setLevel(logging.INFO)
         self.logger.addHandler(logging.StreamHandler())
 
-    def run(self, problem_name: str, solution_file: os.PathLike[str]) -> None:
+    def solve(self, problem_name: str, solution_file: os.PathLike[str]) -> None:
         # === import problem environment ===
         try:
             env_cls = get_environment(problem_name)
@@ -33,7 +33,7 @@ class Gym:
             self.logger.error(e)
             return
 
-        # === run ===
+        # === solve problem ===
         problem_set = load_problem_set(problem_name)
         test_cases: List[Dict[str, Any]] = problem_set["test_cases"]
         self.logger.info(f'Start to run {problem_name} problem with {len(test_cases)} test cases.')
@@ -51,3 +51,22 @@ class Gym:
         # env_cls.show_baseline_results()
         # env_cls.show_sota_results()
         print('You can compare your result with Baseline and SOTA. Have a fun!')
+
+
+    def play(self, problem_name: str):
+        # === import problem environment ===
+        try:
+            env_cls = get_environment(problem_name)
+        except ValueError as e:
+            self.logger.error(e)
+            return
+
+        player_cls = env_cls.get_interactive_player()
+
+        # === interactive play ===
+        env = env_cls.from_play_mode()
+        env.set_logger(self.logger)
+        env_setup_info = env.setup()
+        player = player_cls()
+        player.setup(**env_setup_info)
+        env.run(player)

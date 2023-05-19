@@ -8,7 +8,7 @@ from typing import Any, Dict, List
 
 def load_solution_from_file(file_path: os.PathLike[str]) -> type[Any]:
     spec = importlib.util.spec_from_file_location("solution", file_path)
-    assert spec is not None and spec.loader is not None
+    assert spec is not None and spec.loader is not None, f"Failed to load solution from {file_path}"
     solution = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(solution)
     return solution.Solution

@@ -67,3 +67,11 @@ class Bandit(Environment):
         print("|  1  |  2  |  3  |  4  |")
         print(" ----- ----- ----- ------")
         print("| 84  | 972 | 32  | 426 |")
+
+    @classmethod
+    def from_play_mode(cls):
+        raise NotImplementedError
+    
+    @classmethod
+    def get_interactive_player(cls):
+        raise NotImplementedError
