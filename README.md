@@ -15,7 +15,7 @@ ShacoGym aims to explore a novel mechanism for next generation competetive progr
     - There is maybe no optimized solution (only god knows!).
 
 
-## Environment Setup
+## Get Started
 
 ```bash
 conda create -n shacogym python=3.10
@@ -28,15 +28,23 @@ pip install -r requirements.txt
 Here is a baseline method for *Bandit*. Read [this](gym/problems/bandit/bandit.md) to learn this problem.
 
 ```bash
-python judge.py --problem_name bandit --solution_file ./gym/problems/bandit/baseline.py
+python entry.py --problem_name bandit --solution_file ./gym/problems/bandit/baseline.py
 ```
 
 You can copy the baseline.py and improve it to gain higher score.
 Make sure you implement the required funtions as the baseline. Have a fun!
 
+## Play the game
+
+You can play the problem as a game. Take [Tic-Tac-Toe](gym/problems/tictactoe/tictactoe.md) as your first journey in ShacoGym! 
+
+```bash
+python entry.py --mode play --problem_name tictactoe
+```
 
 ## Solution Protocal
 
 Here are some protocals we should follow:
 1. Do not install libraries other than those in requirements.txt
 2. Do not do some hack to the code
+3. Do not see the source code of problems themselves
