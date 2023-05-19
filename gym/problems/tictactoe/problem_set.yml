@@ -1,0 +1,33 @@
+test_cases:
+  -
+    seed: 0
+    epsilon: 0.5
+    marker: X
+  -
+    seed: 0
+    epsilon: 0.5
+    marker: O
+  -
+    seed: 0
+    epsilon: 0.2
+    marker: X
+  -
+    seed: 0
+    epsilon: 0.2
+    marker: O
+  -
+    seed: 0
+    epsilon: 0
+    marker: X
+  -
+    seed: 0
+    epsilon: 0
+    marker: O
+  -
+    seed: 10086
+    epsilon: 0
+    marker: X
+  -
+    seed: 10086
+    epsilon: 0
+    marker: O

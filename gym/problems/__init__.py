@@ -1,11 +1,13 @@
 from typing import Type
 
 from .bandit import Bandit
+from .tictactoe import TicTacToe
 from .base import Environment
 
 
 ENVIRONMENTS = {
     "bandit": Bandit,
+    "tictactoe": TicTacToe,
 }
 
 
