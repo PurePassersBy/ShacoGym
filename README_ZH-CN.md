@@ -5,12 +5,12 @@
 
 [English](README.md) | [简体中文](README_ZH-CN.md)
 
-</div>
-
 [![Python 3.10](https://shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3109/)
 [<img src="https://img.shields.io/badge/license-MIT-blue">](https://github.com/PurePassersBy/ShacoGym)
 [![Platform](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-lightgrey)](https://github.com/PurePassersBy/ShacoGym)
 [![lint](https://github.com/PurePassersBy/ShacoGym/actions/workflows/flake8_lint.yml/badge.svg)](https://github.com/PurePassersBy/ShacoGym/actions/workflows/flake8_lint.yml)
+</div>
+
 
 ShacoGym 旨在为下一代程序设计竞赛探索一种新的比赛机制。传统的程序设计竞赛，如 [codeforces](https://codeforces.com/) 和 [atcoder](https://atcoder.jp/)，要求选手使用最优化算法求解确定性问题。与之相对地，选手在 ShacoGym 需要解决具有以下特点的全新问题：
 
