@@ -5,6 +5,7 @@ import numpy as np
 
 from ..base import Environment
 
+
 class InteractivePlayer:
     def setup(self, k: int, quota: int) -> None:
         self.k = k
@@ -26,6 +27,7 @@ class InteractivePlayer:
 
     def on_feedback(self, reward: float) -> None:
         print(f'You get reward: {reward}')
+
 
 class Bandit(Environment):
     RESULTS: List[int] = []
