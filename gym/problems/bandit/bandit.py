@@ -1,9 +1,31 @@
+import time
 from typing import List
 
 import numpy as np
 
 from ..base import Environment
 
+class InteractivePlayer:
+    def setup(self, k: int, quota: int) -> None:
+        self.k = k
+        self.quota = quota
+        print('=== Welcome to ShacoGym. This is a Bandit game. ===')
+        print('In this game, you are facing a slot machine with 2 arms.\n\n'
+              'Each arm has a different probability of giving you a reward.'
+              'Each round you can pull only one arm\n\n'
+              'Your goal is to maximize the total reward you get in 10 rounds.\n')
+
+    def take_action(self) -> int:
+        while True:
+            action = input('Enter your action: ')
+            if action.isdigit():
+                action = int(action)
+                if action in range(self.k):
+                    return action
+            print('Invalid action. Please try again.')
+
+    def on_feedback(self, reward: float) -> None:
+        print(f'You get reward: {reward}')
 
 class Bandit(Environment):
     RESULTS: List[int] = []
@@ -70,8 +92,9 @@ class Bandit(Environment):
 
     @classmethod
     def from_play_mode(cls):
-        raise NotImplementedError
+        seed = int(time.time())
+        return cls(2, [0.4, 0.65], 10, seed)
     
     @classmethod
     def get_interactive_player(cls):
-        raise NotImplementedError
+        return InteractivePlayer
