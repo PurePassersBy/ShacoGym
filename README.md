@@ -35,7 +35,7 @@ pip install -r requirements.txt
 Here is a baseline method for *Bandit*. Read [this](gym/problems/bandit/bandit.md) to learn this problem.
 
 ```bash
-python entry.py --problem_name bandit --solution_file ./gym/problems/bandit/baseline.py
+python entry.py --problem_name bandit --solution_file ./solutions/bandit/baseline.py
 ```
 
 You can copy the `baseline.py` and improve it to gain higher score.
