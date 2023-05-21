@@ -18,16 +18,20 @@ class InteractivePlayer:
               'If the board fills up with neither player getting three in a row, then the game is a draw. "X" moves first.\n')
         print(f'=== You are playing as \"{marker}\" this time ===')
     
-    def take_action(self, ) -> int:
+    def show_board(self) -> None:
         print('\nCurrent board:')
         for row in self.board:
             print(' '.join(row))
 
+    def take_action(self, ) -> int:
+        self.show_board()
         while True:
             action = input('Enter your action: ')
             if action.isdigit():
                 action = int(action)
                 if action in range(9) and self.board[action // 3][action % 3] == '_':
+                    self.board[action // 3][action % 3] = self.marker
+                    self.show_board()
                     return action
             print('Invalid action. Please try again.')
     
