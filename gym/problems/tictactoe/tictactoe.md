@@ -14,8 +14,10 @@ It is easy to prove that a skilled player can play so as never to lose. In this 
 from typing import List
 
 class Solution:
-    SIZE = 3
-
+    """
+        This is the Solution Template for tictactoe.
+        Plz implemnt required functions below, while remain their interface unchanged.
+    """
     def setup(self, marker: str, board: List[List[str]]) -> None:
         """
         Called once before the start of the game.
@@ -29,9 +31,6 @@ class Solution:
         Choose an action to take.
         @return: the index of the action to take. row, col = index // 3, index % 3
         """
-        raise NotImplementedError
-        
-    def random_step(self) -> int:
         raise NotImplementedError
     
     def on_feedback(self, board: List[List[str]]) -> None:
