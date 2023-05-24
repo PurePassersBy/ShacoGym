@@ -32,7 +32,7 @@ class InteractivePlayer:
 class Bandit(Environment):
     RESULTS: List[int] = []
 
-    def __init__(self, k: int, probs: list[float], quota: int, seed: int=0):
+    def __init__(self, k: int, probs: List[float], quota: int, seed: int=0):
         self.k = k
         self.probs = probs
         self.quota = quota
