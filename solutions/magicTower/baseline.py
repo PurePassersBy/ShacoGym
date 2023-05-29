@@ -3,6 +3,7 @@ import math
 
 from typing import List
 
+
 class MagicUnit:
     def __init__(self, healthpoints: int, attack: int, defence: int, coins: int) -> None:
         self.healthpoints = healthpoints
@@ -21,6 +22,7 @@ class MagicUnit:
                 return self.healthpoints
             else:
                 return final_damage
+
 
 class Solution:
     def setup(self, tower_levels: int) -> None:
@@ -63,3 +65,4 @@ class Solution:
         gids = [np.random.randint(0, m) for i in range(n)]
         buckets = [[k for k in range(n) if gids[k] == i] for i in range(m)]
         return buckets
+    

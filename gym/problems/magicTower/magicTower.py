@@ -33,13 +33,15 @@ class MagicUnit:
             self.attack += potion.attack
             self.defence += potion.defence
 
-class InteractivePlayer: # TODO: InteractivePlayer
+
+class InteractivePlayer:  # TODO: InteractivePlayer
     ...
+
 
 class MagicTower(Environment):
     SCORES: List[int] = []
 
-    def __init__(self, seed: int, healthpoints: int, attack: int, defence: int, tower_levels: int, 
+    def __init__(self, seed: int, healthpoints: int, attack: int, defence: int, tower_levels: int,
                  coins: int, difficulty: int, level_roads: int, level_depth: int) -> None:
         self.seed = seed
         self.brave = MagicUnit(healthpoints, attack, defence, coins)
@@ -90,7 +92,7 @@ class MagicTower(Environment):
             self.brave.coins -= potion_order[i]
         self.brave.drink_potion(MagicUnit(potion_order[0]*100, potion_order[1], potion_order[2], 0))
 
-    def raid_by_order(self, level: int,  raid_order: List[int], level_map: List[List[MagicUnit]]) -> bool:
+    def raid_by_order(self, level: int, raid_order: List[int], level_map: List[List[MagicUnit]]) -> bool:
         roads_depth_now: List[int] = [0] * self.level_roads
         for i in raid_order:
             order = raid_order[i]
@@ -122,6 +124,7 @@ class MagicTower(Environment):
     def get_interactive_player(cls):
         return InteractivePlayer
     
+
 def random_split(n, m=3):
     gids = [np.random.randint(0, m) for i in range(n-3)]
     buckets = [[k for k in range(n-3) if gids[k] == i] for i in range(m)]
