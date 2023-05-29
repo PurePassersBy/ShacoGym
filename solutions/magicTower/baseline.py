@@ -65,4 +65,3 @@ class Solution:
         gids = [np.random.randint(0, m) for i in range(n)]
         buckets = [[k for k in range(n) if gids[k] == i] for i in range(m)]
         return buckets
-
