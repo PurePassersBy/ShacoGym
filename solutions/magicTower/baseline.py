@@ -11,7 +11,7 @@ class MagicUnit:
         self.defence = defence
         self.coins = coins
     
-    def attack_mamono(self, mamono: "MagicUnit") -> int:
+    def test_attack_mamono(self, mamono: "MagicUnit") -> int:
         give_damage = self.attack - mamono.defence
         receive_damage = mamono.attack - self.defence
         if give_damage <= 0:
@@ -25,12 +25,15 @@ class MagicUnit:
 
 
 class Solution:
-    def setup(self, tower_levels: int) -> None:
+    def setup(self, tower_levels: int, brave: MagicUnit, level_map: List[List[MagicUnit]], level_roads: int, level_depth: int) -> None:
         """
         Called once before the start of the game.
-        @param marker: the tower's total levels.
         """
         self.tower_levels = tower_levels
+        self.brave = brave
+        self.level_map = level_map
+        self.level_roads = level_roads
+        self.level_depth = level_depth
         self.rng = np.random.default_rng(0)
     
     def take_action(self):

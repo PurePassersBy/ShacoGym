@@ -2,18 +2,18 @@
 
 ## Background
 
-Have you ever played the game "Magic Tower". As a Breave, you must go to the top of magic tower to save the princess. But there's no princesses in the tower, you goal is to get the highest score as you can! Here are the rules.  
+Have you ever played the game "Magic Tower". As a Brave, you must go to the top of magic tower to save the princess. But there's no princess in the tower, you goal is to get the highest score as you can! Here are the rules.  
 1. Each level has several roads, you have to walk through a road to get to the next level. And you can switch roads at will.
-2. Each road has several mamonos. Defeat mamonos will give you coins. When you reach the next level, you will get a chance to use coins to buy potions.
-3. You and mamonos have the following three attributes: `HealthPoint`, `Attack` and `Defence`. As you know, `Damage = Attack - Defence`. If you Attack is lower than the mamono's defense, you can't defeat it.
-4. When you defeat mamonos and go to the next level, you will earn score. So you can balance defeat mamonos and climb tower to get higher score.
+2. Each road has several mamonos. Defeating mamonos will give you coins. When you reach the next level, you will get a chance to use coins to buy potions.
+3. You and mamonos have the following three attributes: `HealthPoint`, `Attack` and `Defence`. As you know, `Damage = Attack - Defence`. If your Attack is lower than the mamono's defense, you can't defeat it.
+4. When you defeat mamonos and go to the next level, you will earn score. The faster the higher the score. So you can balance defeat mamonos and climb tower to get higher score.
 
 ## Tempalte
 
 ```python
 class MagicUnit:
     """
-    Your barve and mamonos are made up of it.
+    Your brave and mamonos are made up of it.
     """
     def __init__(self, healthpoints: int, attack: int, defence: int, coins: int) -> None:
         self.healthpoints = healthpoints
@@ -21,7 +21,7 @@ class MagicUnit:
         self.defence = defence
         self.coins = coins
     
-    def attack_mamono(self, mamono: "MagicUnit") -> int:
+    def test_attack_mamono(self, mamono: "MagicUnit") -> int:
         """
         Testing attck mamono.
         @param mamono: the attacked mamono.
