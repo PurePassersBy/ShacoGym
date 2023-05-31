@@ -28,7 +28,7 @@ class MagicUnit:
         @return final_damage: the damage you will suffer, if you attack the mamono.
         """
         give_damage = self.attack - mamono.defence
-        receive_damage = mamono.attack - self.defence
+        receive_damage = mamono.attack - self.defence if (mamono.attack - self.defence > 0) else 0
         if give_damage <= 0:
             return self.healthpoints
         else:
