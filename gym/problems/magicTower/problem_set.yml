@@ -1,0 +1,21 @@
+test_cases:
+  -
+    seed: 0
+    healthpoints: 1000
+    attack: 10
+    defence: 10
+    coins: 10
+    difficulty: 20
+    tower_levels: 10
+    level_roads: 4
+    level_depth: 5
+  # -
+  #   seed: 0
+  #   healthpoint: 2000
+  #   attack: 20
+  #   defence: 20
+  #   coins: 20
+  #   difficulty: 20
+  #   tower_levels: 20
+  #   level_roads: 3
+  #   level_depth: 8
