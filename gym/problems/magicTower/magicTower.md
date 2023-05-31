@@ -39,10 +39,14 @@ class MagicUnit:
                 return final_damage
 
 class Solution:
-    def setup(self, tower_levels: int) -> None:
+    def setup(self, tower_levels: int, brave: MagicUnit, level_map: List[List[MagicUnit]], level_roads: int, level_depth: int) -> None:
         """
         Called once before the start of the game.
         @param tower_levels: the tower's total levels.
+        @param brave: it's your brave!
+        @param level_map: the map of current level. It's a two-dimensional array, which full of mamonos.
+        @param level_roads: the number of roads.
+        @param level_roads: the depth of roads.
         """
         raise NotImplementedError
     
