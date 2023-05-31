@@ -3,10 +3,10 @@ import importlib.util
 
 import yaml
 
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Type
 
 
-def load_solution_from_file(file_path: os.PathLike[str]) -> type[Any]:
+def load_solution_from_file(file_path: os.PathLike[str]) -> Type[Any]:
     spec = importlib.util.spec_from_file_location("solution", file_path)
     assert spec is not None and spec.loader is not None, f"Failed to load solution from {file_path}"
     solution = importlib.util.module_from_spec(spec)

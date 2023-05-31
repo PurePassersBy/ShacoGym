@@ -1,0 +1,31 @@
+test_cases:
+  -
+    n_rows: 5
+    n_cols: 5
+    n_mines: 3
+    seed: 0
+  -
+    n_rows: 5
+    n_cols: 5
+    n_mines: 3
+    seed: 1
+  -
+    n_rows: 8
+    n_cols: 8
+    n_mines: 10
+    seed: 0
+  -
+    n_rows: 10
+    n_cols: 10
+    n_mines: 10
+    seed: 1
+  -
+    n_rows: 20
+    n_cols: 20
+    n_mines: 40
+    seed: 0
+  -
+    n_rows: 50
+    n_cols: 50
+    n_mines: 500
+    seed: 0

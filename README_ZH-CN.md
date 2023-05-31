@@ -36,7 +36,7 @@ pip install -r requirements.txt
 下面是一个求解 *Bandit* 问题的基线方法。 你可以从[这里](gym/problems/bandit/bandit.md)了解这个问题。
 
 ```bash
-python entry.py --problem_name bandit --solution_file ./bandit/baseline.py
+python entry.py --problem_name bandit --solution_file ./solutions/bandit/baseline.py
 ```
 
 你可以复制 `baseline.py` 并且改进里面的算法，从而获得更高的奖励。请确保你参照基线方法，实现了一些必要的函数接口。
