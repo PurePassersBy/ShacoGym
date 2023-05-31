@@ -36,13 +36,12 @@ class MagicUnit:
         else:
             defeat_round: int = math.ceil(mamono.healthpoints / give_damage)
             if (final_damage := (defeat_round - 1) * receive_damage) >= self.healthpoints:
-                final_damage =  self.healthpoints
+                final_damage = self.healthpoints
             else:
-                final_damage =  final_damage
+                final_damage = final_damage
         self.healthpoints -= final_damage
         self.coins += mamono.coins
         
-    
     def drink_potion(self, potion: "MagicUnit") -> int:
         if potion.coins == 0:
             self.healthpoints += potion.healthpoints
@@ -70,7 +69,7 @@ class MagicTower(Environment):
         self.rng = np.random.RandomState(self.seed)
         self.score: int = 0
         self.level_map = self.build_level(0)
-        return {'tower_levels': deepcopy(self.tower_levels), 'brave': deepcopy(self.brave),'level_map': deepcopy(self.level_map), 
+        return {'tower_levels': deepcopy(self.tower_levels), 'brave': deepcopy(self.brave), 'level_map': deepcopy(self.level_map),
                 'level_roads': deepcopy(self.level_roads), 'level_depth': deepcopy(self.level_depth)}
     
     def run(self, sol):
