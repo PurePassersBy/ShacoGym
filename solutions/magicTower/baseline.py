@@ -13,7 +13,7 @@ class MagicUnit:
     
     def test_attack_mamono(self, mamono: "MagicUnit") -> int:
         give_damage = self.attack - mamono.defence
-        receive_damage = mamono.attack - self.defence
+        receive_damage = mamono.attack - self.defence if (mamono.attack - self.defence > 0) else 0
         if give_damage <= 0:
             return self.healthpoints
         else:
