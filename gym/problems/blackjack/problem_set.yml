@@ -1,0 +1,19 @@
+test_cases:
+  -
+    seed: 0
+    n_decks: 1
+  -
+    seed: 100
+    n_decks: 1
+  -
+    seed: 0
+    n_decks: 2
+  -
+    seed: 100
+    n_decks: 2
+  -
+    seed: 999
+    n_decks: 4
+  -
+    seed: 888
+    n_decks: 4

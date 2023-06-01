@@ -2,6 +2,7 @@ from typing import Type
 
 from .bandit import Bandit
 from .tictactoe import TicTacToe
+from .blackjack import Blackjack
 from .magic_tower import MagicTower
 from .mine_sweeper import MineSweeper
 from .base import Environment
@@ -10,6 +11,7 @@ from .base import Environment
 ENVIRONMENTS = {
     "bandit": Bandit,
     "tictactoe": TicTacToe,
+    'blackjack': Blackjack,
     "magic_tower": MagicTower,
     "mine_sweeper": MineSweeper,
 }
