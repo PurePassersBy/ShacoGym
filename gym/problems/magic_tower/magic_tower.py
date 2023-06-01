@@ -87,13 +87,16 @@ class MagicTower(Environment):
     
     def run(self, sol):
         for level in range(self.tower_levels):
-            self.level_map = self.build_level(level)
             potion_order, raid_order = sol.take_action()  # TODO: fine-grained action
             action_result = self.on_action(potion_order, raid_order, level)
             if action_result is False:
-                self.logger.info(f'Dead! Final score: {int(self.score)}')
+                self.logger.info(f'Dead! Final score: {self.score:.4f}')
                 break
-            self.logger.info(f'Next level! Current score: {int(self.score)}')
+            if level == self.tower_levels - 1:
+                self.logger.info(f'Congratulations! You have passed through the tower! Final score: {self.score:.4f}!')
+                break
+            self.logger.info(f'Next level! Current score: {self.score:.4f}')
+            self.level_map = self.build_level(level + 1)
             sol.on_feedback(deepcopy(self.brave), deepcopy(self.level_map))
         self.SCORES.append(self.score)
 
@@ -129,7 +132,7 @@ class MagicTower(Environment):
     def raid_by_order(self, level: int, raid_order: List[int], level_map: List[List[MagicUnit]]) -> bool:
         roads_depth_now: List[int] = [0] * self.level_roads
         for i, order in enumerate(raid_order):
-            if order < 0 or order > self.level_roads:
+            if order < 0 or order >= self.level_roads:
                 raise AssertionError("The number of the road is incorrect.")
             attacked_mamono = level_map[order][roads_depth_now[order]]
             self.brave.attack_mamono(attacked_mamono)
