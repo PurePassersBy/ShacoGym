@@ -1,6 +1,6 @@
 import time
 from copy import deepcopy
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Dict
 
 import numpy as np
 
@@ -44,12 +44,20 @@ class TicTacToe(Environment):
     VALID_MARKER = ['X', 'O']
 
     REWARDS: List[float] = []
+    
+    X_MAX_ACTIONS_MEMORY: Dict[int, Tuple[List[int], int]] = {}
+    X_MIN_ACTIONS_MEMORY: Dict[int, Tuple[List[int], int]] = {}
+    O_MAX_ACTIONS_MEMORY: Dict[int, Tuple[List[int], int]] = {}
+    O_MIN_ACTIONS_MEMORY: Dict[int, Tuple[List[int], int]] = {}
 
     def __init__(self, seed: int, epsilon: float, marker: str) -> None:
         self.seed = seed
         self.epsilon = epsilon
         self.marker = marker
         self.opposite_marker = 'X' if marker == 'O' else 'O'
+
+        self.max_actions_memory, self.min_actions_memory = (self.X_MAX_ACTIONS_MEMORY, self.X_MIN_ACTIONS_MEMORY) if marker == 'X' else \
+                                                           (self.O_MAX_ACTIONS_MEMORY, self.O_MIN_ACTIONS_MEMORY)
 
     def setup(self):
         self.rng = np.random.RandomState(self.seed)
@@ -97,27 +105,66 @@ class TicTacToe(Environment):
             action = self.rng.choice(valid_actions)
             return action
 
-        def _greedy_step() -> int:
-            for i in range(self.SIZE):  # check if there is a winning move
-                for j in range(self.SIZE):
-                    if self.board[i][j] == '_':
-                        if self._is_done((i * self.SIZE + j, self.marker)) == self.marker:
-                            return i * self.SIZE + j
-
-            for i in range(self.SIZE):  # check if there is a blocking move
-                for j in range(self.SIZE):
-                    if self.board[i][j] == '_':
-                        if self._is_done((i * self.SIZE + j, self.opposite_marker)) == self.opposite_marker:
-                            return i * self.SIZE + j
-            
-            return _random_step()
-
         if self.rng.random() < self.epsilon:  # take random action
             pos = _random_step()
         else:
-            pos = _greedy_step()
+            pos, _ = self._mini_max(True)
         
         self.board[pos // self.SIZE][pos % self.SIZE] = self.marker
+
+    def _encode_board(self) -> int:
+        code: int = 0
+        for i in range(self.SIZE):
+            for j in range(self.SIZE):
+                p = i * self.SIZE + j
+                b = 0 if self.board[i][j] == '_' else (1 if self.board[i][j] == 'X' else 2)
+                code += b ** p
+        return code
+
+    def _mini_max(self, is_max_turn: bool):
+        final_status = self._is_done()
+        if final_status == 'draw':
+            return (-1, 0)
+        elif final_status == self.marker:
+            return (-1, 1)
+        elif final_status == self.opposite_marker:
+            return (-1, -1)
+
+        code = self._encode_board()
+        if is_max_turn and code in self.max_actions_memory:
+            actions, score = self.max_actions_memory[code]
+            return self.rng.choice(actions), score
+        elif not is_max_turn and code in self.min_actions_memory:
+            actions, score = self.min_actions_memory[code]
+            return self.rng.choice(actions), score
+
+        marker: str = self.marker if is_max_turn else self.opposite_marker
+        best_score = (1 << 30) * (-1 if is_max_turn else 1)
+        best_actions: List[int] = []
+        for i in range(self.SIZE):
+            for j in range(self.SIZE):
+                if self.board[i][j] != '_':
+                    continue
+                self.board[i][j] = marker
+                _, score = self._mini_max(is_max_turn ^ 1)
+                self.board[i][j] = '_'
+                
+                action = i * self.SIZE + j
+                if is_max_turn:
+                    if score > best_score:
+                        best_score, best_actions = score, [action]
+                    elif score == best_score:
+                        best_actions.append(action)
+                else:
+                    if score < best_score:
+                        best_score, best_actions = score, [action]
+                    elif score == best_score:
+                        best_actions.append(action)
+        if is_max_turn:
+            self.max_actions_memory = (best_actions, best_score)
+        else:
+            self.min_actions_memory = (best_actions, best_score)
+        return self.rng.choice(best_actions), best_score
 
     def _is_done(self, attempt_action: Optional[Tuple[int, str]]=None) -> Optional[str]:
         def _rewind():
@@ -167,7 +214,7 @@ class TicTacToe(Environment):
     def from_play_mode(cls) -> "TicTacToe":
         rng = np.random.RandomState(int(time.time()))
         marker = rng.choice(cls.VALID_MARKER)
-        return cls(seed=0, epsilon=0.5, marker=marker)
+        return cls(seed=0, epsilon=0.2, marker=marker)
 
     @classmethod
     def get_interactive_player(cls):
