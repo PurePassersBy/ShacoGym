@@ -111,7 +111,7 @@ class MagicTower(Environment):
             for j in range(self.level_depth):
                 coins: int = int(self.difficulty * self.rng.uniform(1, 2))  # TODO: general way to generate coins
                 unit_difficulty = coins * (level + 1)
-                healthpoints, attack, denfence = random_split(unit_difficulty-3, 3)
+                healthpoints, attack, denfence = self.random_split(unit_difficulty-3, 3)
                 healthpoints = (healthpoints + 1) * HEALTHPOINTS_UNIT
                 attack = attack + 1
                 denfence = denfence + 1
@@ -157,11 +157,9 @@ class MagicTower(Environment):
     @classmethod
     def get_interactive_player(cls):
         return InteractivePlayer
-    
 
-def random_split(n: int, m: int) -> List[int]:
-    rng = np.random.RandomState(int(time.time()))
-    buckets = [0] * m
-    for _ in range(n):
-        buckets[rng.randint(0, m)] += 1
-    return buckets
+    def random_split(self, n: int, m: int) -> List[int]:
+        buckets = [0] * m
+        for _ in range(n):
+            buckets[self.rng.randint(0, m)] += 1
+        return buckets
