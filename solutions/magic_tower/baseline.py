@@ -1,7 +1,8 @@
-import numpy as np
+import time
 import math
+from typing import List, Tuple
 
-from typing import List
+import numpy as np
 
 
 class MagicUnit:
@@ -25,18 +26,20 @@ class MagicUnit:
 
 
 class Solution:
-    def setup(self, tower_levels: int, brave: MagicUnit, level_map: List[List[MagicUnit]], level_roads: int, level_depth: int) -> None:
+    def setup(self, tower_levels: int, brave: MagicUnit, level_map: List[List[MagicUnit]]) -> None:
         """
         Called once before the start of the game.
+        @param tower_levels: the number of levels in the tower.
+        @param brave: the brave with four attributes: healthpoints, attack, defence, coins.
+        @param level_map: a 2D map of the first floor.
         """
         self.tower_levels = tower_levels
         self.brave = brave
         self.level_map = level_map
-        self.level_roads = level_roads
-        self.level_depth = level_depth
+        self.level_roads, self.level_depth = len(level_map), len(level_map[0])
         self.rng = np.random.default_rng(0)
     
-    def take_action(self):
+    def take_action(self) -> Tuple[List[int], List[int]]:
         """
         Choose an action to take.
         @return potion_order: the list of potions order. [healthpoints*100, attack, defence]
@@ -44,27 +47,23 @@ class Solution:
                             we will ignore the action. If you donn't walk to the end of one of the road, you will die.
                             Which means the number of choices for one of the roads must to be greater than n.
         """
-        potions = self.random_split(self.brave.coins, 3)
-        potion_order: List[int] = []
-        for i in range(3):
-            potion_order.append(len(potions[i]))
+        potion_order: List[int] = self.random_split(self.brave.coins, 3)
         raid_order: List[int] = [0] * self.level_depth
         return potion_order, raid_order
     
-    def on_feedback(self, brave: MagicUnit, level_map: List[List[MagicUnit]], level_roads: int, level_depth: int) -> None:
+    def on_feedback(self, brave: MagicUnit, level_map: List[List[MagicUnit]]) -> None:
         """
         Receive feedback from the environment after taking an action.
         @param brave: it's your brave!
         @param level_map: the map of current level. It's a two-dimensional array, which full of mamonos.
-        @param level_roads: the number of roads.
-        @param level_roads: the depth of roads.
         """
         self.brave = brave
         self.level_map = level_map
-        self.level_roads = level_roads
-        self.level_depth = level_depth
+        self.level_roads, self.level_depth = len(level_map), len(level_map[0])
 
-    def random_split(self, n, m=3):
-        gids = [np.random.randint(0, m) for i in range(n)]
-        buckets = [[k for k in range(n) if gids[k] == i] for i in range(m)]
+    def random_split(self, n: int, m: int) -> List[int]:
+        rng = np.random.RandomState(int(time.time()))
+        buckets = [0] * m
+        for _ in range(n):
+            buckets[rng.randint(0, m)] += 1
         return buckets
