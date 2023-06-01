@@ -39,32 +39,28 @@ class MagicUnit:
                 return final_damage
 
 class Solution:
-    def setup(self, tower_levels: int, brave: MagicUnit, level_map: List[List[MagicUnit]], level_roads: int, level_depth: int) -> None:
+    def setup(self, tower_levels: int, brave: MagicUnit, level_map: List[List[MagicUnit]]) -> None:
         """
         Called once before the start of the game.
         @param tower_levels: the tower's total levels.
         @param brave: it's your brave!
         @param level_map: the map of current level. It's a two-dimensional array, which full of mamonos.
-        @param level_roads: the number of roads.
-        @param level_roads: the depth of roads.
         """
         raise NotImplementedError
     
     def take_action(self):
         """
         Choose an action to take.
-        @return potion_order: the list of potions order. One conin can buy 100 healthpoints, 1 attack or 1 defence. The list is [healthpoints, attack, defence].
+        @return potion_order: the list of potions order. One coin can buy 100 healthpoints, 1 attack or 1 defence. The list is [healthpoints, attack, defence].
         @return raid_order: the list of raid order, which stores road number(0, 1, 2, 3, ect). If num < 0 or num >= level_roads, we will ignore the action. If you donn't walk to the end of one of the road, you will die. Which means the number of choices for one of the roads must to be greater than n.
         """
         raise NotImplementedError
     
-    def on_feedback(self, brave: MagicUnit, level_map: List[List[MagicUnit]], level_roads: int, level_depth: int) -> None:
+    def on_feedback(self, brave: MagicUnit, level_map: List[List[MagicUnit]]) -> None:
         """
         Receive feedback from the environment after taking an action.
         @param brave: it's your brave!
         @param level_map: the map of current level. It's a two-dimensional array, which full of mamonos.
-        @param level_roads: the number of roads.
-        @param level_roads: the depth of roads.
         """
         raise NotImplementedError
 ```
